@@ -1,0 +1,29 @@
+{
+  "name": "PyTorch CUDA Development",
+  "image": "ghcr.io/wendlerc/images/base:latest",
+  "runArgs": [
+    "--gpus=all"
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=/mnt/nas/ddpo_data,target=/mnt/nas/ddpo_data,type=bind"
+  ],
+  "remoteUser": "developer",
+  "containerUser": "developer",
+  "updateRemoteUserUID": true,
+  "containerEnv": {
+    "HOME": "/home/developer"
+  },
+  "postCreateCommand": [
+    "bash", "-c",
+    "sudo mkdir -p /home/developer/.cursor-server && sudo chown developer:developer /home/developer/.cursor-server && chmod -R 755 /home/developer/.cursor-server"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/conda/bin/python"
+      }
+    }
+  }
+}
