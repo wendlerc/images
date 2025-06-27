@@ -4,8 +4,8 @@
   "runArgs": [
     "--gpus=all"
   ],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/developer,type=bind",
+  "workspaceFolder": "/home/developer",
   "mounts": [
     "source=/mnt/nas/,target=/mnt/nas/,type=bind"
   ],
@@ -40,7 +40,7 @@
         "ms-python.python",
         "ms-toolsai.jupyter",
         "ms-toolsai.jupyter-keymap",
-        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.jupyter-renderers"
       ]
     }
   }
