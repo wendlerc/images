@@ -34,16 +34,16 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install Miniforge and clean up in the same layer
+# Install Miniforge with better error handling
 RUN wget -O /tmp/Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" && \
     bash /tmp/Miniforge3.sh -b -p "/opt/conda" && \
-    rm /tmp/Miniforge3.sh && \
-    # Clean conda cache
-    /opt/conda/bin/conda clean -afy && \
-    # Remove unnecessary conda packages and files
-    find /opt/conda -name "*.pyc" -type f -delete && \
-    find /opt/conda -name "*.pyo" -type f -delete && \
-    find /opt/conda -name "*~" -type f -delete
+    rm /tmp/Miniforge3.sh
+
+# Clean conda cache and temporary files (separate step for easier debugging)
+RUN /opt/conda/bin/conda clean -afy || true && \
+    find /opt/conda -name "*.pyc" -type f -delete 2>/dev/null || true && \
+    find /opt/conda -name "*.pyo" -type f -delete 2>/dev/null || true && \
+    find /opt/conda -name "*~" -type f -delete 2>/dev/null || true
 
 # Source conda in the same layer where it's needed
 RUN . /opt/conda/etc/profile.d/conda.sh
