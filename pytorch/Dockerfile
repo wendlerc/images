@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="ghcr.io/wendlerc/images/base:master"
+ARG BASE_IMAGE="ghcr.io/wendlerc/images/base:latest"
 
 FROM ${BASE_IMAGE}
 
