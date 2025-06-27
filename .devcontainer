@@ -4,8 +4,8 @@
   "runArgs": [
     "--gpus=all"
   ],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/developer,type=bind",
-  "workspaceFolder": "/home/developer",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/developer/workspace,type=bind",
+  "workspaceFolder": "/home/developer/workspace",
   "mounts": [
     "source=/mnt/nas/,target=/mnt/nas/,type=bind"
   ],
